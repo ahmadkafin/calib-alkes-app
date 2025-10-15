@@ -2,7 +2,6 @@ const { default: axios } = require('axios');
 const fs = require('fs');
 const moment = require('moment');
 
-const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
 const dtNow = moment();
 
 /**
@@ -12,6 +11,8 @@ const dtNow = moment();
  * @returns 
  */
 exports.get = (req, res) => {
+    const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+
     try {
         const fromRaw = JSON.parse(rawData);
         let data = fromRaw.map((e) => {
@@ -63,6 +64,8 @@ exports.get = (req, res) => {
  * @returns 
  */
 exports.find = (req, res) => {
+    const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+
     try {
         const data = JSON.parse(rawData);
         const found = data
@@ -98,6 +101,8 @@ exports.find = (req, res) => {
  * @returns 
  */
 exports.getClosestDate = (req, res) => {
+    const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+
     try {
         const data = JSON.parse(rawData);
         const found = data.map((e) => {
