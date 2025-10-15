@@ -1,0 +1,3 @@
+{
+  "ignore": ["tfa.json", "data/*"]
+}
