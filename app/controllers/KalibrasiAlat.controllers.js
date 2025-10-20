@@ -2,7 +2,7 @@ const { default: axios } = require('axios');
 const fs = require('fs');
 const moment = require('moment');
 
-const dtNow = moment();
+// const dtNow = moment();
 
 /**
  * 
@@ -12,7 +12,7 @@ const dtNow = moment();
  */
 exports.get = (req, res) => {
     const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
-
+    const dtNow = moment();
     try {
         const fromRaw = JSON.parse(rawData);
         let data = fromRaw.map((e) => {
@@ -65,6 +65,7 @@ exports.get = (req, res) => {
  */
 exports.find = (req, res) => {
     const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+    const dtNow = moment();
 
     try {
         const data = JSON.parse(rawData);
@@ -102,6 +103,7 @@ exports.find = (req, res) => {
  */
 exports.getClosestDate = (req, res) => {
     const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+    const dtNow = moment();
     try {
         const data = JSON.parse(rawData);
         console.log(dtNow);
@@ -124,6 +126,7 @@ exports.getClosestDate = (req, res) => {
 
         return res.status(200).json({
             status: 200,
+            currentDate: dtNow,
             data: grouped,
         });
     } catch (e) {
