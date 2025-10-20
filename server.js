@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const cron = require('node-cron');
 
 const port = parseInt(process.env.PORT) || process.argv[3] || 8080;
 
@@ -13,7 +13,12 @@ async function main() {
     await sheetsReader.fetchData("KalibrasiAlat", "KalibrasiAlat");
 }
 
-// main();
+const pullData = async () => {
+    await sheetsReader.fetchData("KalibrasiAlat", "KalibrasiAlat");
+    console.log(`[${time}] ✅ Tarik data Google Sheets selesai`);
+}
+
+cron.schedule('0 */6 * * *', pullData, { timezone: 'Asia/Jakarta' });
 
 app.get('/', (req, res) => {
     return res.status(200).json({

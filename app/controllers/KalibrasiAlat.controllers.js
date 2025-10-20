@@ -102,9 +102,9 @@ exports.find = (req, res) => {
  */
 exports.getClosestDate = (req, res) => {
     const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
-
     try {
         const data = JSON.parse(rawData);
+        console.log(dtNow);
         const found = data.map((e) => {
             const dt = moment(e.next_calib_date, 'DD-MMM-YYYY');
             const diffDays = dt.diff(dtNow, 'days');
