@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const cron = require('node-cron');
 const axios = require('axios');
 
