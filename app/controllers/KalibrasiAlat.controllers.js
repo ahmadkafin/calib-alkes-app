@@ -79,9 +79,10 @@ exports.getNamaRuangan = (req, res) => {
                 bucket_days: bucket,
             }
         })
+        const unique = [...new Set(data.map(item => item.nama_ruangan))];
         return res.status(200).json({
             status: 200,
-            data: data.map((e) => e.nama_ruangan)
+            data: unique
         })
     } catch (e) {
         return res.status(500).json({
