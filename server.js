@@ -6,12 +6,7 @@ const axios = require('axios');
 
 const port = parseInt(process.env.PORT) || process.argv[3] || 8080;
 
-app.use(cors({
-    origin: ['http://192.168.0.111:5173'],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
-}));
+// app.use(cors());
 
 
 app.use(express.json({ limit: '50mb' }));
