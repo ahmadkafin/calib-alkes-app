@@ -6,6 +6,7 @@ const allowedIP = middleware.AllowedIP;
 
 module.exports = (app) => {
     app.get('/kalibrasi/get', [verifyToken], KalibrasiAlatCont.get);
+    app.get('/kalibrasi/getRuangan', [verifyToken], KalibrasiAlatCont.getNamaRuangan);
     app.get('/kalibrasi/find', [verifyToken], KalibrasiAlatCont.find);
     app.get('/kalibrasi/getClosestDate', [allowedIP], KalibrasiAlatCont.getClosestDate);
     app.get('/kalibrasi/testMessage', KalibrasiAlatCont.testMessage);

@@ -63,6 +63,40 @@ exports.get = (req, res) => {
  * @param {*} res 
  * @returns 
  */
+exports.getNamaRuangan = (req, res) => {
+    const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
+    const dtNow = moment();
+
+    try {
+        const fromRaw = JSON.parse(rawData);
+        let data = fromRaw.map((e) => {
+            const dt = moment(e.next_calib_date, 'DD-MMM-YYYY');
+            const diffDays = dt.diff(dtNow, 'days');
+            const bucket = mapToBucket(diffDays);
+            return {
+                ...e,
+                diff_days: diffDays,
+                bucket_days: bucket,
+            }
+        })
+        return res.status(200).json({
+            status: 200,
+            data: data.map((e) => e.nama_ruangan)
+        })
+    } catch (e) {
+        return res.status(500).json({
+            status: 500,
+            message: e.message
+        });
+    }
+}
+
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 exports.find = (req, res) => {
     const rawData = fs.readFileSync('./data/KalibrasiAlat.json');
     const dtNow = moment();
