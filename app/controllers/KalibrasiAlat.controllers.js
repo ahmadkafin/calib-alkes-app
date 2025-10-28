@@ -29,7 +29,7 @@ exports.get = (req, res) => {
 
         data = data.filter((e) => {
             const matchDiff =
-                filter_diff ? e.bucket_days === filter_diff : true;
+                filter_diff ? e.bucket_days === parseInt(filter_diff) : filter_diff ? e.bucket_days === null : true;
             const matchAlat =
                 alat_kesehatan ? e.alat_kesehatan === alat_kesehatan : true;
             const matchStatus = status ? e.status === status : true;
