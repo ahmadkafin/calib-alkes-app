@@ -28,8 +28,14 @@ exports.get = (req, res) => {
         const { filter_diff, alat_kesehatan, status, nama_ruangan, merk, nomor_seri } = req.query;
 
         data = data.filter((e) => {
-            const matchDiff =
-                filter_diff ? e.bucket_days === parseInt(filter_diff) : filter_diff ? e.bucket_days === null : true;
+            // const matchDiff =
+            //     filter_diff ? e.bucket_days === parseInt(filter_diff) : true;
+            const matchDiff = !filter_diff
+                ? true
+                : filter_diff === 'null'
+                    ? e.bucket_days === null
+                    : e.bucket_days === parseInt(filter_diff, 10);
+
             const matchAlat =
                 alat_kesehatan ? e.alat_kesehatan === alat_kesehatan : true;
             const matchStatus = status ? e.status === status : true;
